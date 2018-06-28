@@ -1,0 +1,260 @@
+           
+                 use Restaurant
+                 ----------------------------------------
+       
+                         db.Restaurant.insert({"_id":1,
+                             RestaurantID:"R001",
+                     RestaurantName:"Manohar Dairy",
+                     Address:{Street:"MP Nagar",City:"Bhopal",PinCode:462001},
+                     Cuisine:["Continental","South Indian","Chinese"],
+                     District:"Bhopal",
+                     Ratings:[{"Date":new Date("1/January/2018"),Rating:4/5,Score:80},
+                               {"Date":new Date("1/March/2018"),Rating:3/5,Score:65},
+                               {"Date":new Date("1/May/2018"),Rating:4.5/5,Score:98}]
+                     })
+db.Restaurant.find()
+                     
+                              ----------------------------------------        
+                     
+                   db.Restaurant.insert({"_id" : 2,
+                       RestaurantID : "R002", 
+                       RestaurantName : "NUS",
+                       Address : {Street:"Vjnagar" , City:"Bhopal" , PinCode:462030},
+                       Cuisine : ["Indian","Italian","Thai"],
+                       District : "Bhopal",
+                       Ratings : [{"Date" : new Date("09/March/2018"),Rating : 4/5, Score : 80},
+                     {"Date" : new Date("09/May/2018"),Rating : 4.5/5, Score : 95},
+                    {"Date" : new Date("09/July/2018"),Rating : 4.9/5, Score : 98}]
+                })
+
+                 ----------------------------------------
+                
+                     db.Restaurant.insert({"_id" : 3,
+                       RestaurantID : "R003", 
+                       RestaurantName : "Paradise",
+                       Address : {Street:"Rameshwar" , City:"Chennai" , PinCode:456423},
+                       Cuisine : ["Indian","Italian","Maharastrian"],
+                       District : "Chennai",
+                       Ratings : [{"Date" : new Date("19/October/2018"),Rating : 5/5, Score : 100},
+                     {"Date" : new Date("19/November/2018"),Rating : 4.5/5, Score : 95},
+                    {"Date" : new Date("19/December/2018"),Rating : 4/5, Score : 80}]
+                })
+                
+                 ----------------------------------------
+                           db.Restaurant.insert({"_id" : 4,
+                       RestaurantID : "R004", 
+                       RestaurantName : "Star Biryani",
+                       Address : {Street:"Kolar" , City:"Bhopal" , PinCode:462005},
+                       Cuisine : ["Indian","Mughlai","Chinese"],
+                       District : "Bhopal",
+                       Ratings : [{"Date" : new Date("19/May/2018"),Rating : 3.5/5, Score : 70},
+                     {"Date" : new Date("19/June/2018"),Rating : 4.5/5, Score : 95},
+                    {"Date" : new Date("19/July/2018"),Rating : 2/5, Score : 30}]
+                })
+
+                 ----------------------------------------
+                
+                     db.Restaurant.insert({"_id" : 5,
+                       RestaurantID : "R005", 
+                       RestaurantName : "ZamZam",
+                       Address : {Street:"railway Station" , City:"Bhopal" , PinCode:462001},
+                       Cuisine : ["Snacks","Mughlai","Chinese"],
+                       District : "Bhopal",
+                       Ratings : [{"Date" : new Date("29/May/2018"),Rating : 3.5/5, Score : 70},
+                     {"Date" : new Date("29/June/2018"),Rating : 4.5/5, Score : 95},
+                    {"Date" : new Date("29/July/2018"),Rating : 2/5, Score : 30}]
+                })
+                      
+                  -------------------------------------------------------------------------------------------
+                  db.Restaurant.find({},{RestaurantID:1,RestaurantName:1,Cuisine:1})
+                
+
+                  -------------------------------------------------------------------------------------------
+                      db.Restaurant.find({},{RestaurantID:1,RestaurantName:1,Cuisine:1,"_id":0}) 
+
+                  -------------------------------------------------------------------------------------------
+                       
+                    db.Restaurant.find({},{RestaurantID:1,RestaurantName:1,"Address.PinCode":1,"_id":0})
+
+                  -------------------------------------------------------------------------------------------
+                    
+                    db.Restaurant.find({District:"Chennai"})
+
+                  -------------------------------------------------------------------------------------------
+                    
+                      db.Restaurant.find({"Address.City":"Chennai"})
+
+                  -------------------------------------------------------------------------------------------
+                    
+                      db.Restaurant.find({District:"Bhopal"}).limit(2) 
+
+                  -------------------------------------------------------------------------------------------
+                      
+                      db.Restaurant.find({District:"Bhopal"}).skip(1)
+
+                  -------------------------------------------------------------------------------------------
+                    
+                       db.Restaurant.find({District:"Bhopal"}).skip(2).limit(2)
+
+                  -------------------------------------------------------------------------------------------
+
+                    
+               db.Restaurant.find({"Ratings.Score":{$gt:90}}) 
+
+                  -------------------------------------------------------------------------------------------     
+                  
+              db.Restaurant.find({"Ratings.Score":{$gt:90,$lt:100}})
+
+                  ------------------------------------------------------------------------------------------- 
+              
+              db.Restaurant.find({Cuisine :{$nin : ["Thai"]},"Ratings.Score":{$gt:90}})
+
+                  -------------------------------------------------------------------------------------------
+               
+              db.Restaurant.find({Cuisine :{$nin : ["Thai"]}}).sort({Cuisine:-1})
+
+                  -------------------------------------------------------------------------------------------
+              
+       db.Restaurant.find({RestaurantName : {$regex : "^Man"}},
+	{RestaurantID : 1, RestaurantName : 1 , Cuisine : 1})
+              
+                  -------------------------------------------------------------------------------------------
+       
+  db.Restaurant.find({RestaurantName : {$regex : "ise$"}},
+            {RestaurantID : 1, RestaurantName : 1 ,
+                "Address.City" : 1,
+                   Cuisine : 1})
+                   
+                
+                  -------------------------------------------------------------------------------------------
+              
+
+     //16 . Write a MongoDB query to find the restaurant Id, name, city  and cuisine for those
+ restaurants which contain 'Reg' as three letters somewhere in its name. 
+
+
+      db.Restaurant.find({RestaurantName : {$regex :  ".*ad.*"}},
+            {RestaurantID : 1, RestaurantName : 1 ,
+                "Address.City" : 1,
+                   Cuisine : 1})    
+
+
+   
+
+                  -------------------------------------------------------------------------------------------
+
+	//17 .Write a MongoDB query to find the restaurants which belong to the district Bronx 
+	and prepared either American or Chinese dish. 
+
+
+	db.Restaurant.find({$and:[{"Address.city":"Bronx"},{$or:[{Cuisine:"American"},
+		{Cuisine:"Chinese"}]}
+	]},{_id:0,Name:1})
+
+
+
+                  -------------------------------------------------------------------------------------------
+
+
+
+	//18. Write a MongoDB query to find the restaurant Id, name, district and cuisine for those restaurants which belong to the district Chennai or Kanchipuram
+	db.Restaurant.find({$or:[{"Address.city":"Chennai"},
+	{"Address.city":"Kanchipuram"}]}
+	,{_id:1,Name:1,District:1})
+
+
+                  -------------------------------------------------------------------------------------------
+
+	//19. Write a MongoDB query to find the restaurant Id, name, district and cuisine for those restaurants which are not belonging to the district Chennai or Kanchipuram
+	db.Restaurant.find({$or:[{"Address.city":{$ne:"Chennai"}},
+	{"Address.city":{$ne:"Kanchipuram"}}]}
+	,{_id:1,Name:1,District:1,Cuisine:1})
+
+
+
+                  -------------------------------------------------------------------------------------------
+
+
+
+	//20 .Write a MongoDB query to find the restaurant Id, name, district and cuisine for those restaurants which achieved a score which is not more than 10. 
+	db.Restaurant.find({"Ratings.score":{$lt:10}}
+	,{_id:0,Name:1,District:1,Cuisine:1})
+
+
+                  -------------------------------------------------------------------------------------------
+
+
+
+
+	//21 .Write a MongoDB query to find the restaurant Id, name, district and cuisine for those restaurants which prepared dish except 'American' and 'Chinees' or restaurant's name begins with letter 'Wil'. 
+	db.Restaurant.find({$or:[{"Name":{$regex:"Wil"}},
+	{$and:[{Cuisine:{$ne:"American"}},
+	{Cuisine:{$ne:"Chinese"}}]}
+	]},{_id:1,Name:1,District:1,Cuisine:1})
+
+
+                  -------------------------------------------------------------------------------------------
+
+
+
+
+	//22 .Write a MongoDB query to find the restaurant Id, name, and grades for those restaurants which achieved a grade of "A" and scored 10 on an ISODate "2014-08-11T00:00:00Z" among many of survey dates.. 
+	db.Restaurant.find({$and:[{"Ratings.rating":"A"},
+	{"Ratings.score":10},{"Ratings.Date":ISODate ("2014-08-11T00:00:00Z")}]}
+	,{_id:1,Name:1,"Ratings.rating":1,"Ratings.Date":1})
+
+
+                  -------------------------------------------------------------------------------------------
+
+
+
+	//23 .Write a MongoDB query to find the restaurant Id, name and grades for those restaurants where the 2nd element of grades array contains a grade of "A" and score 9 on an ISODate "2014-08-11T00:00:00Z". 
+	db.Restaurant.find({ "Ratings.2.date": ISODate("2014-08-11T00:00:00Z"), "Ratings.2.rating":"A" , "Ratings.2.score" : 8},{"_id" : 1,"Name":1,"Ratings":1});
+
+                  -------------------------------------------------------------------------------------------
+
+
+
+
+	//25 .Write a MongoDB query to arrange the name of the restaurants in ascending order along with all the columns 
+	db.Restaurant.find().sort({"Name" : 1})
+
+
+                  -------------------------------------------------------------------------------------------
+
+
+
+	//26 .Write a MongoDB query to arrange the name of the restaurants in descending along with all the columns.  
+	db.Restaurant.find().sort({"Name" : -1})
+
+
+                  -------------------------------------------------------------------------------------------
+
+
+
+	//27 .Write a MongoDB query to arranged the name of the cuisine in ascending order and for that same cuisine district should be in descending order. 
+	db.Restaurant.find().sort({"Cuisine":1,"District" : -1});
+
+                  -------------------------------------------------------------------------------------------
+
+
+
+
+	//28 .. Write a MongoDB query to know whether all the addresses contains the street or not. 
+	db.Restaurant.find({"Address.street" :{ $exists : true } });
+
+                  -------------------------------------------------------------------------------------------
+
+
+
+
+	//31 .Write a MongoDB query to find the restaurant name, district, and cuisine for those restaurants which contains 'mon' as three letters somewhere in its name.  	
+          db.Restaurant.find( {Name : {$regex : "..nal.."}} ,{"District" : 1,"Name" : 1,"Cuisine" : 1 })
+
+                  -------------------------------------------------------------------------------------------
+
+
+
+
+	//32 . Write a MongoDB query to find the restaurant name, district, and cuisine for those restaurants which contain 'Mad' as first three letters of its name 
+	db.Restaurant.find( {Name : {$regex : "^McD"}} ,{"District" : 1,"Name" : 1,"Cuisine" : 1 })
