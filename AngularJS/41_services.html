@@ -1,0 +1,35 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+
+
+<script src="D:\Node\js/angular.min.js"> </script>
+
+
+<script >
+var app=angular.module("myApp",[]);
+app.controller("customCtrl", function($scope,calcService){
+$scope.sqrt=function(){
+return calcService.sqrt($scope.value);
+
+}
+
+});
+app.service('calcService',function(){
+this.sqrt=function(a){
+return Math.sqrt(a);
+}
+})
+
+
+</script>
+</head>
+
+<body ng-App="myApp" ng-controller="customCtrl" >
+Enter Value <input type="text" ng-model="value"/><br>
+
+Square Root Value : {{sqrt()}}<br>
+
+</body>
+</html>

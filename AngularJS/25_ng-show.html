@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="D:\Node\js/angular.min.js"> </script>
+</head>
+<body>
+
+<div ng-app="DemoApp" ng-controller="DemoController">
+    <input type="button" value="Show Master Name" ng-click="ShowHide()"/>
+
+    <br><br><div ng-show = "IsVisible">Anas Khan</div>
+</div>
+
+<script>
+
+    var app = angular.module('DemoApp',[]);
+
+    app.controller('DemoController',function($scope){
+        $scope.IsVisible = false;
+
+        $scope.ShowHide = function(){
+            $scope.IsVisible = $scope.IsVisible = true;
+        }
+        });
+</script>
+
+</body>
+</html>

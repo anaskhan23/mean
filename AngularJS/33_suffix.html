@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+
+<script src="D:\Node\js/angular.min.js"> </script>
+
+
+<script >
+var app=angular.module("customFilterApp",[]);
+
+
+app.filter('ordinal', function(){
+  return function(number){
+if(!number){
+return;
+}
+
+var array=["th","st","nd","rd"];
+remainder=number%100;
+var result=number+(array[(remainder-20)%10]||
+                   array[remainder]||
+		   array[0])
+return result;
+}
+})
+
+</script>
+</head>
+
+<body ng-App="customFilterApp" ng-init="value=''">
+
+Enter Value <input type="text"  ng-model="value"/><br>
+
+{{value|ordinal}}
+
+
+</body>
+</html>
+
+
+
+
+
+

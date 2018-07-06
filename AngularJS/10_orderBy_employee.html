@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<style>
+
+table,th,td{border:1px solid black}
+th{color:blue}
+</style>
+<head>
+<script src="D:\Node\js/angular.min.js">
+
+</script>
+</head>
+
+<body ng-app="" ng-init="employees=[{empID:'E001',empName:'Anas'},
+				{empID:'E002',empName:'Zakash'},
+				{empID:'E003',empName:'Ayush'}]">
+<table>
+  <tr>
+    <th>Employee ID</th>
+
+    <th>Employee Name</th> 
+  </tr>
+
+  
+
+     <tr ng-repeat="employee in employees|orderBy:'empName':true">
+ <td>{{employee.empID}} </td>
+ <td>{{employee.empName}} </td>
+
+  </tr>
+ 
+
+</table>
+
+
+
+</body>
+
+
+</html>

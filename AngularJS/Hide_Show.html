@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="D:\Node\js/angular.min.js"></script>
+         <script>
+         	var app=angular.module("myApp",[])
+         	app.controller("myctrl",function($scope){
+         		$scope.f1=function()
+         		{
+         		$scope.x=!$scope.x;
+         	}
+         	})
+         </script>
+	</head>
+	<body ng-app="myApp" ng-controller="myctrl" ng-init="x=false">
+		
+	<input type="button" value="toggle" ng-click="f1()"/>
+	<p ng-show="x">Samsung</p>
+	</body>
+</html>

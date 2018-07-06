@@ -1,0 +1,49 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+
+
+<script src="D:\Node\js/angular.min.js"> </script>
+
+
+<script >
+var app=angular.module("customFilterApp",[]);
+app.controller("myctrl",function($scope){
+         		$scope.f1=function()
+         		{
+         		$scope.x=!$scope.x;
+         	}
+         	})
+
+app.filter('desc',function(){
+  return function(item,options){
+            var array;
+
+            if (options == true){
+              array=item.sort();
+            }
+            else if (options== false) {
+                    array=item.sort().reverse()
+                }
+                else if (options== undefined) {
+                    array=item.sort()
+                }
+                   return array
+              }
+
+})
+
+</script>
+</head>
+<body ng-App="customFilterApp" ng-controller="myctrl" ng-init="names=['Anas','Zahra','Ramesh']">
+
+<input type="button" value="toggle" ng-click={{name|desc}}/>
+	<p ng-show="x">
+<div ng-repeat ="name in names | desc : true">
+  
+
+      {{name  }}</div></p>
+</body>
+</html>

@@ -1,0 +1,31 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+
+
+<script src="D:\Node\js/angular.min.js"> </script>
+
+
+<script >
+var app=angular.module("customFilterApp",[]);
+
+app.filter('desc',function(){
+return function (item){
+var r=item.sort();
+var re=r.reverse();
+ return re;
+}
+})
+
+</script>
+</head>
+<body ng-App="customFilterApp" ng-init="name=['a','x']">
+
+
+
+ {{name|desc}}<br>
+
+</body>
+</html>

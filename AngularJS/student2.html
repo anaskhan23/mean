@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="D:\Node\js\angular.min.js">
+</script>
+</head>
+<body>
+	<script src="D:\Node\js\script2.js">
+</script>
+<div ng-App="studentApp" ng-controller="studentCtrl">
+
+
+<table border="1">
+
+<tr>
+ <th> Name in upper case </th>
+ <td>{{student[0].name|uppercase}} </td>
+
+
+
+ <td>{{student[1].name|uppercase}} </td>
+</tr>
+
+
+<tr>
+	<td>subjects</td>
+	<td>
+<ul>
+	<li ng-repeat="subject in student[0].subjects| orderBy:'marks'">
+		{{subject.name+',marks:'+subject.marks}}
+	</li>
+</ul>
+</td>
+<td>
+<ul>
+	<li ng-repeat="subject in student[1].subjects| orderBy:'marks'">
+		{{subject.name+',marks:'+subject.marks}}
+	</li>
+</ul>
+</td>
+</tr>
+</table>
+<p> Ramya: Total= {{student[0].total()}} </p>
+<p> Ramya: Average={{student[0].average()|number:2}} </p>
+<p> John: Total={{student[1].total()}} </p>
+<p> John: Total={{student[1].average()|number:2}} </p>
+
+Greatest Average: {{Greatest()}}
+</div>
+</body>
+
+</html>

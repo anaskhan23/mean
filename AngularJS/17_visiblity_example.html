@@ -1,0 +1,31 @@
+
+
+<!DOCTYPE html>
+<html ng-App>
+<head>
+<script src="D:\Node\js/angular.min.js">
+
+</script>
+</head>
+
+<body ng-init="visible=true;invisible=false">
+<p ng-show="true">    Paragraph 1,Can You see me?</p>
+
+<p ng-show="false">   Paragraph 2,Can You see me?</p>
+ 
+<p ng-show="1==1">    Paragraph 3,Can You see me?</p>
+
+<p ng-show="1==2">    Paragraph 4,Can You see me?</p>
+
+<p ng-show=visible>   Paragraph 5,Can You see me?</p>
+
+<p ng-show=invisible> Paragraph 6,Can You see me?</p>
+
+<button ng-disabled=false> Button 1 </button>
+
+<button ng-disabled=true> Button 1 </button>
+
+</body>
+
+
+</html>

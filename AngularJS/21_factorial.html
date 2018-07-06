@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+
+<script src="D:\Node\js/angular.min.js"> </script>
+
+
+<script >
+var app=angular.module("myApp",[]);
+app.controller("myCtrl", function($scope){
+$scope.factorial=function(){
+var fact=1;
+for(var i=$scope.value;i>0;i--){
+fact*=i;
+}
+return fact;
+
+}
+
+
+
+});
+</script>
+</head>
+
+<body ng-App="myApp" ng-controller="myCtrl" >
+Enter Value <input type="text" ng-init="Factorial='0'" ng-model="value"/><br>
+
+Factorial : {{factorial()}}<br>
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+
+
+<script src="D:\Node\js/angular.min.js"> </script>
+
+
+<script >
+var app=angular.module("customFilterApp",[]);
+
+app.filter('hyphenRemove',function(){
+return function (item){
+var str= item.split("-");
+return str.join(' ');
+}
+
+})
+
+</script>
+</head>
+
+<body ng-App="customFilterApp" ng-init="value=''">
+
+Enter Value <input type="text"  ng-model="value"/><br>
+
+{{value|hyphenRemove}}
+
+
+</body>
+</html>

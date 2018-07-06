@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+
+<script src="D:\Node\js/angular.min.js"> </script>
+
+
+<script >
+var app=angular.module("myApp",[]);
+app.controller("myCtrl", function($scope){
+$scope.sqrRoot=function(){
+return Math.sqrt($scope.value);
+
+}
+$scope.abs=function(){
+return Math.abs($scope.value);
+
+}
+
+
+});
+</script>
+</head>
+
+<body ng-App="myApp" ng-controller="myCtrl" >
+Enter Value <input type="text" ng-model="value"/><br>
+
+Square Root Value : {{sqrRoot()}}<br>
+Absolute Value : {{abs()}}
+</body>
+</html>
